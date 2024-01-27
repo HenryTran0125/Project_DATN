@@ -68,7 +68,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("./components/food.jpg");
+  background-image: url("../public/food.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

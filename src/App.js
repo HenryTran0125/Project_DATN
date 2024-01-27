@@ -1,9 +1,11 @@
 import React from 'react';
-import MongoDataComponent from './components/MongoDataComponent';
+import MongoDataComponent from './components/Setpoint';
 import './App.css'; // Import your CSS file for styling
-import MyComponent from './components/MyComponent';
+import MyComponent from './components/SavingData';
 //import Snowflake from './components/Snowflake';
-import MyComponent2 from './components/MyComponent2';
+import DisplayData from './components/DisplayData';
+import SavingData from './components/SavingData';
+import AutoFill from './components/AutoFill';
 
 const App = () => {
   const numberOfSnowflakes = 50;
@@ -14,12 +16,14 @@ const App = () => {
       <div className="container-left">
         <h1>Data From MongoDB</h1>
         <MongoDataComponent />
-        <MyComponent />
+        <SavingData />
+
       </div>
 
       {/* Container 2 */}
       <div className="container-right">
-        <MyComponent2 />
+        <DisplayData />
+        <AutoFill />
       </div>
     </div>
   );
