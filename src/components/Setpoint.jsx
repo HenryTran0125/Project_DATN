@@ -1,7 +1,6 @@
 // Import necessary libraries and CSS file
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./MongoDataComponent.css"; // Import your CSS file for styling
 
 // Define your component
 const Setpoint = () => {
