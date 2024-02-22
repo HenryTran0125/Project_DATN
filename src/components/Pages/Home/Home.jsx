@@ -1,44 +1,46 @@
 // import '../../App.css'; // Import your CSS file for styling
-import Setpoint from '../../Setpoint'
+import Setpoint from '../../Setpoint';
 import DisplayData from '../../DisplayData';
 import SavingData from '../../SavingData';
 import AutoFill from '../../AutoFill';
 import styled from 'styled-components'
 
+const Body = styled.div`
+  background-image: url("/university.jpg"); // Sửa lại đường dẫn nếu cần
+  background-size: cover; // Đảm bảo hình ảnh phủ kín phần tử
+  background-position: center; // Căn giữa hình ảnh nền
+  background-repeat: no-repeat; // Không lặp lại hình ảnh
+  width: 100vw; // Chiều rộng viewport
+  height: 100vh; // Chiều cao viewport
+`
+
 const Container = styled.div`
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw; // Viewport Width
-  height: 100vh; // Viewport Height
-  background-image: url("/TDTU.jpg"); // Corrected path assuming food.jpg is in the public directory
-  /* background-size: cover; // Cover the entire viewport */
-  background-position: center; // Center the background image
-  background-repeat: no-repeat; // Do not repeat the image
+  width: 100%; // Sử dụng phần trăm để đảm bảo chiều rộng tương đối
+  height: 100%; // Sử dụng phần trăm để đảm bảo chiều cao tương đối
 `
-const LeftContainer = styled.div`
-width: 600px; /* Kích thước cố định cho container-left */
+
+// Định nghĩa cho LeftContainer và RightContainer giống nhau nên có thể tạo một BaseContainer để tái sử dụng mã
+const BaseContainer = styled.div`
+  width: 600px; /* Kích thước cố định cho containers */
   padding: 20px;
   margin-right: 50px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
   border-radius: 30px;
   text-align: center;
-  color: #5c0404;
   overflow: hidden;
   background-color: #3498db;
   background: linear-gradient(#3498db);
 `
 
-const RightContainer = styled.div`
-   width: 600px; /* Kích thước cố định cho container-right */
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
-  border-radius: 30px;
-  text-align: center;
+const LeftContainer = styled(BaseContainer)`
+  color: #5c0404;
+`
+
+const RightContainer = styled(BaseContainer)`
   color: #01393a;
-  overflow: hidden;
-  background-color: #3498db;
-  background: linear-gradient(#3498db);
 `
 
 const H1 = styled.h1`
@@ -46,25 +48,24 @@ const H1 = styled.h1`
   margin-bottom: 20px;
 `
 
-
 function Home() {
   return (
-    <Container>
-      {/* Container 1 */}
-      <LeftContainer>
-        <H1>Data From MongoDB</H1>
-        <Setpoint />
-        <SavingData />
-
-      </LeftContainer>
-
-      {/* Container 2 */}
-      <RightContainer>
-        <DisplayData />
-        <AutoFill />
-      </RightContainer>
-
-    </Container>
+    <Body>
+      <Container>
+        {/* Container 1 */}
+        <LeftContainer>
+          <H1>Data From MongoDB</H1>
+          <Setpoint />
+          <SavingData />
+        </LeftContainer>
+        
+        {/* Container 2 */}
+        <RightContainer>
+          <DisplayData />
+          <AutoFill />
+        </RightContainer>
+      </Container>
+    </Body>
   )
 }
 
