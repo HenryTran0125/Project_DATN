@@ -2,14 +2,18 @@ import React from 'react';
 import Home from './components/Pages/Home/Home';
 import Login from './components/Pages/Login/Login'
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
+import WelcomePage from './components/Pages/WelcomePage/WelcomePage';
 
 const App = () => {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/Project_DATN'>
     <Routes>
-      <Route path='/Project_DATN/home' element={<Home />} />
-      <Route path='/Project_DATN/login' element={<Login />} />
+      <Route path='/' element={<WelcomePage />} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='*' element={<PageNotFound />} />
     </Routes>
     </BrowserRouter>
   );

@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 
 const LoginLayout = styled.main`
-  min-height: 100vh
+display: flex;
+  min-height: 100vh;
+  min-width: 100vw;
+  justify-content: center;
+  align-items: center;
 `
 
 function Login() {
   return (
-    <div>
+    <LoginLayout>
       <h1>Login</h1>
-    </div>
+    </LoginLayout>
   )
 }
 
