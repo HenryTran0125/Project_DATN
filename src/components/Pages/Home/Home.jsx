@@ -3,13 +3,11 @@ import Setpoint from '../../Setpoint';
 import DisplayData from '../../DisplayData';
 import SavingData from '../../SavingData';
 import AutoFill from '../../AutoFill';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import Header from '../../Header/Header';
 
 const Body = styled.div`
-  background-image: url("/university.jpg"); // Sửa lại đường dẫn nếu cần
-  background-size: cover; // Đảm bảo hình ảnh phủ kín phần tử
-  background-position: center; // Căn giữa hình ảnh nền
-  background-repeat: no-repeat; // Không lặp lại hình ảnh
+  background-color: #ffd8a8;
   width: 100vw; // Chiều rộng viewport
   height: 100vh; // Chiều cao viewport
 `
@@ -48,9 +46,11 @@ const H1 = styled.h1`
   margin-bottom: 20px;
 `
 
+
 function Home() {
   return (
     <Body>
+      <Header />
       <Container>
         {/* Container 1 */}
         <LeftContainer>
@@ -58,6 +58,7 @@ function Home() {
           <Setpoint />
           <SavingData />
         </LeftContainer>
+
         
         {/* Container 2 */}
         <RightContainer>
