@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "@rjsf/core";
 import validator from "@rjsf/validator-ajv8";
 import axios from "axios";
+import { useEffect } from "react";
 
 const schema = {
   title: "Lưu trữ dữ liệu khối lượng",
@@ -61,25 +62,26 @@ const setpointUiSchema = {
 const SavingData = () => {
   const [formData, setFormData] = useState({});
   const [setpointFormData, setSetpointFormData] = useState({});
+  const [myData, setMyData] = useState();
 
   const handleDataSubmit = async ({ formData }) => {
     try {
-      console.log("Dữ liệu gửi đi:", formData);
+      console.log("Data sent:", formData);
       const response = await axios.post(
         "https://ap-southeast-1.aws.data.mongodb-api.com/app/get-xdisr/endpoint/post",
         formData
       );
 
-      console.log("Kết quả từ server:", response.data);
+      console.log("Respsonse:", response.data);
       setFormData({});
     } catch (error) {
-      console.error("Lỗi khi gửi dữ liệu:", error);
+      console.error("Errors:", error);
     }
   };
 
   const handleSetpointSubmit = async ({ formData }) => {
     try {
-      console.log("Dữ liệu setpoint gửi đi:", formData);
+      console.log("Set Point:", formData);
       await axios.post(
         "https://ap-southeast-1.aws.data.mongodb-api.com/app/get-xdisr/endpoint/post_setPoint",
         formData
@@ -87,9 +89,33 @@ const SavingData = () => {
 
       setSetpointFormData({});
     } catch (error) {
-      console.error("Lỗi khi gửi dữ liệu setpoint:", error);
+      console.error("Set Point errors:", error);
     }
   };
+
+  const fetchData = async () => {
+    try{
+      const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/get-xdisr/endpoint/getData")
+      console.log(response.data[0].setpoint);
+      setFormData(prev => ({...prev, khoiLuong: response.data[0].setpoint}));
+    }catch(error){
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  const startPolling = () => {
+    const pollingInterval = setInterval(fetchData, 1000);
+    return () => clearInterval(pollingInterval);
+  };
+
+  useEffect(() => {
+    fetchData();
+    const stopPolling = startPolling();
+
+    return () => {
+      stopPolling();
+    };
+  }, [])
 
   return (
     <div className="auth-form-container">

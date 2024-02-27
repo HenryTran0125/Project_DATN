@@ -62,7 +62,7 @@ const Setpoint = () => {
 
       <div className="setpoint-data-container">
         <h1 className="setpoint-data-title">
-          <span>Setpoint: </span>
+          <span>Current SetPoint: </span>
           {setpointData.length > 0 ? (
             <span className="setpoint-data-value">
               {setpointData[0].setpoint} gram

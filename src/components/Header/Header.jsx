@@ -10,6 +10,7 @@ const HeaderStyle = styled.header`
 `
 const H3 = styled.h3`
   color: white;
+  font-size: 24px;
 `
 const Img = styled.img`
   width: 200px;

@@ -7,17 +7,19 @@ import styled from 'styled-components';
 import Header from '../../Header/Header';
 
 const Body = styled.div`
+  width: 100vw; 
+  min-height: 100vh; 
   background-color: #ffd8a8;
-  width: 100vw; // Chiều rộng viewport
-  height: 100vh; // Chiều cao viewport
+  position: relative;
 `
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; // Sử dụng phần trăm để đảm bảo chiều rộng tương đối
-  height: 100%; // Sử dụng phần trăm để đảm bảo chiều cao tương đối
+  margin-top: 24px;
+  width: 100%;
+  min-height: 100%; 
 `
 
 // Định nghĩa cho LeftContainer và RightContainer giống nhau nên có thể tạo một BaseContainer để tái sử dụng mã
@@ -29,8 +31,7 @@ const BaseContainer = styled.div`
   border-radius: 30px;
   text-align: center;
   overflow: hidden;
-  background-color: #3498db;
-  background: linear-gradient(#3498db);
+  background-color: #ffd8a8;
 `
 
 const LeftContainer = styled(BaseContainer)`
@@ -44,6 +45,11 @@ const RightContainer = styled(BaseContainer)`
 const H1 = styled.h1`
   font-size: 2em;
   margin-bottom: 20px;
+`
+
+const Button = styled.button`
+  position: absolute;
+  bottom: 20%;
 `
 
 
@@ -63,9 +69,11 @@ function Home() {
         {/* Container 2 */}
         <RightContainer>
           <DisplayData />
-          <AutoFill />
+          {/* <AutoFill /> */}
         </RightContainer>
       </Container>
+
+      <Button>Finish</Button>
     </Body>
   )
 }
