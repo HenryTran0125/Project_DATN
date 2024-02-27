@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Project_DATN/static/css/main.8449103f.css",
-    "main.js": "/Project_DATN/static/js/main.83d4835c.js",
+    "main.js": "/Project_DATN/static/js/main.b3b5733f.js",
     "index.html": "/Project_DATN/index.html",
     "main.8449103f.css.map": "/Project_DATN/static/css/main.8449103f.css.map",
-    "main.83d4835c.js.map": "/Project_DATN/static/js/main.83d4835c.js.map"
+    "main.b3b5733f.js.map": "/Project_DATN/static/js/main.b3b5733f.js.map"
   },
   "entrypoints": [
     "static/css/main.8449103f.css",
-    "static/js/main.83d4835c.js"
+    "static/js/main.b3b5733f.js"
   ]
 }
