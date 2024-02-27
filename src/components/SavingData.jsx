@@ -95,7 +95,7 @@ const SavingData = () => {
 
   const fetchData = async () => {
     try{
-      const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/get-xdisr/endpoint/getData")
+      const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/get-xdisr/endpoint/update")
       console.log(response.data[0].setpoint);
       setFormData(prev => ({...prev, khoiLuong: response.data[0].setpoint}));
     }catch(error){
