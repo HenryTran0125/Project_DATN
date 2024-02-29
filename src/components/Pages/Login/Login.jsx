@@ -42,12 +42,7 @@ const Input = styled.input`
 
 function Login() {
   const {register, handleSubmit, formState:{errors}} = useForm();
-  const [inputForm, setInputForm] = useState("");
-
-  function handleChange(e){
-    // setInputForm(e.target.value);
-    console.log(e.target.value)
-  }
+  const [inputID, setInputID] = useState("");
 
   function onFormSubmit(data) {
     console.log(data);
@@ -69,8 +64,6 @@ function Login() {
           <Label>Student ID:</Label>
           <Input 
           type="text" 
-          
-          onChange = {handleChange}
           {...register('StudentID', {
             required: "This field is required",
             pattern: {
@@ -78,6 +71,7 @@ function Login() {
               message: "ID must be a number",
             }
           })} />
+          {errors.StudentID && <p>{errors.StudentID.message}</p>}
 
 
           <Label>Student Name:</Label>
@@ -86,6 +80,8 @@ function Login() {
               validate: value => /^\d+$/.test(value) || "The input must be number"
             })
           } />
+
+          <button>Login</button>
         </LoginForm>
       </form>
       </FormLayout>
