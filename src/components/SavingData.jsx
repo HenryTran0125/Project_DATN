@@ -59,7 +59,7 @@ const setpointUiSchema = {
   },
 };
 
-const SavingData = () => {
+const SavingData = ({setTimeStamp}) => {
   const [formData, setFormData] = useState({});
   const [setpointFormData, setSetpointFormData] = useState({});
   const [myData, setMyData] = useState();
@@ -96,8 +96,9 @@ const SavingData = () => {
   const fetchData = async () => {
     try{
       const response = await axios.get("https://ap-southeast-1.aws.data.mongodb-api.com/app/get-xdisr/endpoint/getUpdate")
-      console.log(response.data[0].weight);
+      console.log(response.data[0]);
       setFormData(prev => ({...prev, khoiLuong: response.data[0].weight}));
+      setTimeStamp(response.data[0].timestamp);
     }catch(error){
       console.error("Error fetching data:", error);
     }

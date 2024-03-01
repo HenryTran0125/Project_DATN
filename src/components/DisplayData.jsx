@@ -5,32 +5,44 @@ import { styled } from "styled-components";
 
 const Container = styled.div`
   text-align: center;
+  border-radius: 30px;
   margin-top: 0px; /* Adjust the margin as needed */
   color: rgb(0, 0, 0);
-  overflow-y: scroll;
-  height: 600px;
+  /* overflow-y: scroll; */
+  height: 500px;
+  width: 90%;
+  background-color: white;
+  box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+             background: rgba(255, 255, 255, 0.18); /* Adjust the alpha value for more or less transparency */
+  /* border-radius: 40px; Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  backdrop-filter: blur(6px); /* The key for the frosted glass effect */
+  /* -webkit-backdrop-filter: blur(10px); For Safari browser support */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 `
 
-const Box = styled.div`
-  font-size: 30px; 
-  font-weight: bold;
-  color: rgb(71, 0, 0);
-`
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
 
-const List = styled.ul`
-  list-style-type: none;
-    padding: 0;
-`
+const Th = styled.th`
+  background-color: #009879;
+  color: white;
+  padding: 10px;
+`;
 
-const Item = styled.li`
-  text-align: left;
-  margin-bottom: 30px; 
-  margin-left: 80px; 
-`
+const Td = styled.td`
+  padding: 8px;
+  border: 1px solid black;
+`;
 
-const Message = styled.span`
-    font-size: 30px;
-`
+const Tr = styled.tr`
+  
+    background-color: white;
+  
+`;
 
 const Label = styled.div`
   display: flex;
@@ -38,18 +50,7 @@ const Label = styled.div`
   /* justify-content: space-around; */
 `
 
-const Edit = styled.button`
-height: 48px;
-width: 48px;
-margin-left: 48px;
-  /* xmlns:"http://www.w3.org/2000/svg",  */
-  /* fill="none" viewBox="0 0 24 24", 
-  stroke-width="1.5",
-  stroke="currentColor" ,
-  class="w-6 h-6"; */
-`
-
-const DisplayData = () => {
+const DisplayData = ({timeStamp}) => {
   const [myData, setMyData] = useState([]);
 
   const fetchData = async () => {
@@ -83,32 +84,31 @@ const DisplayData = () => {
 
   return (
     <Container>
-      <Box>
-        <h2>Danh Sách Sản Phẩm: </h2>
-
-        {myData.length > 0 ? (
-          <List>
+      <h2>Danh Sách Sản Phẩm: </h2>
+      {myData.length > 0 ? (
+        <Table>
+          <thead>
+            <tr>
+              <Th>#</Th>
+              <Th>Thời gian</Th>
+              <Th>Tên Sản Phẩm</Th>
+              <Th>Khối Lượng</Th>
+            </tr>
+          </thead>
+          <tbody>
             {myData.map((dataItem, index) => (
-              <Item>
-                {/* Số thứ tự */} 
-                <Label>
-                  <strong>{index+1}. Tên Sản Phẩm: {dataItem.ten}</strong>  <br />
-                  {/* <Edit>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-</svg>
-
-</Edit> */}
-
-                </Label>
-                <strong> Khối Lượng:</strong> {dataItem.khoiLuong} gram
-              </Item>
+              <Tr key={index}>
+                <Td>{index + 1}</Td>
+                <Td>{timeStamp}</Td>
+                <Td>{dataItem.ten}</Td>
+                <Td>{dataItem.khoiLuong} gram</Td>
+              </Tr>
             ))}
-          </List>
-        ) : (
-          <Message>No data available.</Message>
-        )}
-      </Box>
+          </tbody>
+        </Table>
+      ) : (
+        <p>No data available.</p>
+      )}
     </Container>
   );
 };

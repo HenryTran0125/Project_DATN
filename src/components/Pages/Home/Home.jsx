@@ -5,16 +5,21 @@ import SavingData from '../../SavingData';
 import AutoFill from '../../AutoFill';
 import styled from 'styled-components';
 import Header from '../../Header/Header';
+import { useState } from 'react';
 
 const Body = styled.div`
   width: 100vw; 
   min-height: 100vh; 
-  background-color: #ffd8a8;
+  background-image: url('${process.env.PUBLIC_URL}/6.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   position: relative;
 `
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 24px;
@@ -31,11 +36,19 @@ const BaseContainer = styled.div`
   border-radius: 30px;
   text-align: center;
   overflow: hidden;
-  background-color: #ffd8a8;
+  /* background-color: #ffd8a8; */
 `
 
 const LeftContainer = styled(BaseContainer)`
-  color: #5c0404;
+  color: black;
+  box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+             background: rgba(255, 255, 255, 0.18); /* Adjust the alpha value for more or less transparency */
+  /* border-radius: 40px; Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  backdrop-filter: blur(6px); /* The key for the frosted glass effect */
+  /* -webkit-backdrop-filter: blur(10px); For Safari browser support */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 `
 
 const RightContainer = styled(BaseContainer)`
@@ -53,7 +66,10 @@ const Button = styled.button`
 `
 
 
-function Home() {
+const Home = () => {
+  const [timeStamp, setTimeStamp] = useState();
+
+
   return (
     <Body>
       <Header />
@@ -62,18 +78,16 @@ function Home() {
         <LeftContainer>
           <H1>Data From MongoDB</H1>
           <Setpoint />
-          <SavingData />
+          <SavingData setTimeStamp = {setTimeStamp} />
         </LeftContainer>
 
         
         {/* Container 2 */}
-        <RightContainer>
-          <DisplayData />
+        
+          <DisplayData timeStamp = {timeStamp}/>
           {/* <AutoFill /> */}
-        </RightContainer>
+        
       </Container>
-
-      <Button>Finish</Button>
     </Body>
   )
 }
