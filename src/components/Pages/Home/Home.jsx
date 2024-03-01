@@ -3,23 +3,28 @@ import Setpoint from '../../Setpoint';
 import DisplayData from '../../DisplayData';
 import SavingData from '../../SavingData';
 import AutoFill from '../../AutoFill';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import Header from '../../Header/Header';
+import { useState } from 'react';
 
 const Body = styled.div`
-  background-image: url("/university.jpg"); // Sửa lại đường dẫn nếu cần
-  background-size: cover; // Đảm bảo hình ảnh phủ kín phần tử
-  background-position: center; // Căn giữa hình ảnh nền
-  background-repeat: no-repeat; // Không lặp lại hình ảnh
-  width: 100vw; // Chiều rộng viewport
-  height: 100vh; // Chiều cao viewport
+  width: 100vw; 
+  min-height: 100vh; 
+  background-image: url('${process.env.PUBLIC_URL}/6.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
 `
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%; // Sử dụng phần trăm để đảm bảo chiều rộng tương đối
-  height: 100%; // Sử dụng phần trăm để đảm bảo chiều cao tương đối
+  margin-top: 24px;
+  width: 100%;
+  min-height: 100%; 
 `
 
 // Định nghĩa cho LeftContainer và RightContainer giống nhau nên có thể tạo một BaseContainer để tái sử dụng mã
@@ -31,12 +36,19 @@ const BaseContainer = styled.div`
   border-radius: 30px;
   text-align: center;
   overflow: hidden;
-  background-color: #3498db;
-  background: linear-gradient(#3498db);
+  /* background-color: #ffd8a8; */
 `
 
 const LeftContainer = styled(BaseContainer)`
-  color: #5c0404;
+  color: black;
+  box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+             background: rgba(255, 255, 255, 0.18); /* Adjust the alpha value for more or less transparency */
+  /* border-radius: 40px; Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  backdrop-filter: blur(6px); /* The key for the frosted glass effect */
+  /* -webkit-backdrop-filter: blur(10px); For Safari browser support */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 `
 
 const RightContainer = styled(BaseContainer)`
@@ -48,22 +60,33 @@ const H1 = styled.h1`
   margin-bottom: 20px;
 `
 
-function Home() {
+const Button = styled.button`
+  position: absolute;
+  bottom: 20%;
+`
+
+
+const Home = () => {
+  const [timeStamp, setTimeStamp] = useState();
+
+
   return (
     <Body>
+      <Header />
       <Container>
         {/* Container 1 */}
         <LeftContainer>
           <H1>Data From MongoDB</H1>
           <Setpoint />
-          <SavingData />
+          <SavingData setTimeStamp = {setTimeStamp} />
         </LeftContainer>
+
         
         {/* Container 2 */}
-        <RightContainer>
-          <DisplayData />
-          <AutoFill />
-        </RightContainer>
+        
+          <DisplayData timeStamp = {timeStamp}/>
+          {/* <AutoFill /> */}
+        
       </Container>
     </Body>
   )
